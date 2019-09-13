@@ -1,0 +1,16 @@
+ModuleCmd_Switch.c(179):ERROR:152: Module 'craype-haswell' is currently not loaded
+ModuleCmd_Switch.c(179):ERROR:152: Module 'totalview/8.15.4' is currently not loaded
+ModuleCmd_Switch.c(179):ERROR:152: Module 'cce/8.4.2' is currently not loaded
+ModuleCmd_Switch.c(179):ERROR:152: Module 'cray-mpich/7.2.4' is currently not loaded
+ModuleCmd_Switch.c(179):ERROR:152: Module 'cray-libsci/13.1.0' is currently not loaded
+libhugetlbfs [batch15:415]: WARNING: Hugepage size 2097152 unavailablelibhugetlbfs [batch15:415]: WARNING: New heap segment map at 0x10000000000 failed: Cannot allocate memory
+forrtl: No such file or directory
+forrtl: severe (29): file not found, unit 500, file /p/work/snidhan/spod_re5e4/frinf/DATA_FILES/up_datafiles/up_01892900_65.res
+Image              PC                Routine            Line        Source             
+output             000000002004D919  Unknown               Unknown  Unknown
+output             000000002006214E  Unknown               Unknown  Unknown
+output             0000000020002FE3  Unknown               Unknown  Unknown
+output             0000000020000D32  Unknown               Unknown  Unknown
+output             0000000020000AFE  Unknown               Unknown  Unknown
+output             00000000200FAF59  Unknown               Unknown  Unknown
+output             00000000200009E9  Unknown               Unknown  Unknown

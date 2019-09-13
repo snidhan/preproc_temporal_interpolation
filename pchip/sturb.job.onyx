@@ -1,0 +1,30 @@
+#!/bin/sh
+#ACCOUNT
+#PBS -A ONRDC29722307
+
+#QUEUE
+#PBS -q debug
+##PBS -q background
+
+#WALL TIME
+#PBS -l walltime=00:10:00
+
+#NUMBER OF PROCESSORS
+#PBS -l select=1:ncpus=44:mpiprocs=1
+
+#STANDARD ERROR
+#PBS -e temp.err
+
+#STANDARD OUT
+#PBS -o temp.out
+
+#JOB NAME
+#PBS -N temp
+
+#RUN
+## CHECK for previous restart files
+
+cd /p/work/snidhan/spod_re5e4/frinf/DATA_FILES/temporal_interpolation/pchip/
+
+./output > log_interp_up 
+

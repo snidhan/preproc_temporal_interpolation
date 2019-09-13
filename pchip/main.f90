@@ -15,15 +15,15 @@ program main
     !!! Input parameters for interpolation
     integer (kind=4), parameter    ::  nr = 356        !no of points in radial direction
     integer (kind=4), parameter    ::  ntheta = 258    !no of points in azimuthal direction
-    integer (kind=4), parameter    ::  N = 5794        !no of snapshots
+    integer (kind=4), parameter    ::  N = 7207        !no of snapshots
     integer (kind=4), parameter    ::  nstart = 1892600   !beginning of iteration
-    integer (kind=4), parameter    ::  nend = 2471900     !end of iteration
+    integer (kind=4), parameter    ::  nend = 2613200     !end of iteration
     integer (kind=4), parameter    ::  stride = 100   !stride for data files
-    character (len=160), parameter ::  inDIR = '/home/sheel/Work2/projects_data/spod_re5e4/frinf/data_files/x_D_50/'    !directory of input slices
-    character (len=160), parameter ::  outDIR = '/home/sheel/Work2/projects_data/spod_re5e4/frinf/data_files_uniform/x_D_50/pchip/'   !directory of output slices
-    character (len=160), parameter ::  timeDIR = '/home/sheel/Work/projects/spod_re5e4/post/frinf/time_stamps/'   !directory of output slices
+    character (len=160), parameter ::  inDIR = '/mnt/RAID5/sheel/spod_re5e4/frinf/wp_slice/x_D_120/'    !directory of input slices
+    character (len=160), parameter ::  outDIR = '/mnt/RAID5/sheel/spod_re5e4/frinf/data_files_uniform/x_D_120/wp/'   !directory of output slices
+    character (len=160), parameter ::  timeDIR = './'   !directory of output slices
     character (len=160), parameter ::  vartype = 'wp'   !variable that is interpolated
-    character (len=160), parameter ::  slice_idx = '50'   !variable that is interpolated
+    character (len=160), parameter ::  slice_idx = '120'   !variable that is interpolated
   
     !!! Temporary variables
 
@@ -56,7 +56,7 @@ program main
 
     allocate(time(N), time_interp(N))
 
-    filename = 'time_stamp_1892600_2471900.txt'
+    filename = 'time_stamp_1892600_2613200_2.txt'
     write(fullfile,'(a,a)') trim(timeDIR), trim(filename)
 
     open(unit=100, file=fullfile, status = 'old', form = 'formatted', action = 'read')
@@ -65,7 +65,7 @@ program main
         read(100,*) time(i)    
     end do
 
-    filename = 'time_stamp_1892600_2471900_uniform.txt'
+    filename = 'time_stamp_1892600_2613200_uniform.txt'
     write(fullfile,'(a,a)') trim(timeDIR), trim(filename)
 
     open(unit=100, file=fullfile, status = 'old', form = 'formatted', action = 'read')
@@ -92,12 +92,15 @@ program main
     allocate(dd(N), di(N))    
     allocate(wk(nwk))    
 
+    
+    spline = .false.  ! spline = .false. sets the interpolation to PCHIP, otherwise the interpolation is SPLINE
+    print*, 'PCHIP interpolation is done in time'
+
     do j = 1,Nrows
         print*, 'For row number ', j
         inDATA(1:N) = var_data(:,j)
         print*, 'Minval and maxval of inDATA ', minval(inDATA), maxval(inDATA)
         outDATA = 0.0d0
-        spline = .true.
         wk = 0.0d0
         call dpchez(N,time,inDATA,dd,spline,wk,nwk,ierr)
         call dpchev(N,time,inDATA,dd,N,time_interp,outDATA,di,ierr)

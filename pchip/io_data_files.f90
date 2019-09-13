@@ -28,10 +28,10 @@ subroutine io_data_files(inDIR,outDIR,slice_idx,nr,ntheta,Nrows,nstart,nend,stri
             namef = nstart + (i-1)*stride                
             
             do j = 1, ntheta
-                p(1:nr,j) = var_data(i, 1+ nr*(j-1):nr*j)
+                p(1:nr,j) = var_data(i, 1 + nr*(j-1):nr*j)
             end do
             
-            write(filename,'(a,a,i8.8,a,a,a,a)') trim(outDIR),trim(vartype)//"_",namef,"_",trim(slice_idx), "_uniform_spline",".res"
+            write(filename,'(a,a,i8.8,a,a,a,a)') trim(outDIR),trim(vartype)//"_",namef,"_",trim(slice_idx), "_uniform_pchip",".res"
             open(unit=500, file=filename,  status='replace', form='unformatted', access='stream', action='write')
             write(500) p
             close (500)
